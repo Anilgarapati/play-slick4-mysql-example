@@ -35,8 +35,7 @@ class UserTableDef(tag: Tag) extends Table[User](tag, "user") {
   def mobile = column[Long]("mobile")
   def email = column[String]("email")
 
-  override def * =
-    (id, firstName, lastName, mobile, email) <>(User.tupled, User.unapply)
+  override def * = (id, firstName, lastName, mobile, email) <>(User.tupled, User.unapply)
 }
 
 class Users @Inject() (protected val dbConfigProvider: DatabaseConfigProvider)(implicit executionContext: ExecutionContext) extends HasDatabaseConfigProvider[JdbcProfile] {
